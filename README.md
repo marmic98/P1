@@ -77,7 +77,8 @@
   - intersezDin.c: effettua l'intersezione tra due array di interi e salva i risultati in un array allocato dinamicamente
 ## Files
   - copyFile.c: Effettua scrittura di un file, copia di esso su un altro file e output testuale di quest'ultimo
-  - spartiacque.c: Scrive su un file tutte le stringhe, contenute in un array di stringhe, che sono alfabeticamente precedenti ad una certa stringa "spartiacque" presa in input 
+  - spartiacque.c: Scrive su un file tutte le stringhe, contenute in un array di stringhe, che sono alfabeticamente precedenti ad una certa stringa "spartiacque" presa in input
+  - persone.c: Dato un array di Persone, creare un menù che permetta di creare un file con le donne, uno con gli uomini, uno con i maggiorenni e uno dove, presa in input una iniziale fornire i cognomi che hanno quella inizile (descrzione da rivedere ndr.) 
 ## Roba Gas
   - pokemon.c: Pokemon CPU vs CPU
   - tartaruga.c: Tartaruga meccanica che mediante comandi scrive su un pavimento 50x50
