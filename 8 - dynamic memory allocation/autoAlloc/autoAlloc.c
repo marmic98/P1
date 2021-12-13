@@ -26,7 +26,6 @@ void* xmalloc (size_t size){
         return NULL;
         exit(-1);
     }
-
     return p;
 }
 
