@@ -5,6 +5,7 @@
 
 #define LENMAX 30
 #define LENCF 16
+#define MAXPER 3
 
 typedef struct Persona {
     char* nome;
@@ -129,11 +130,9 @@ void searchByNomeCognome(Persona** p, char* nome, char* cognome, int k){
 }
 
 int byCognome(Persona** p, char* cognome, int k){
-    //printf("Le persone il cui cognome e' %s sono:\n", cognome);
     int counter = 0;
     for (int i = 0; i < k; i++){
         if ((strcmp(p[i]->cognome, cognome) == 0)){
-            //printf("nome: %s\ncognome: %s\nCodice fiscale: %s\n\n", p[i]->nome, p[i]->cognome, p[i]->codiceFiscale);
             counter += 1;
         }
     }
@@ -141,11 +140,9 @@ int byCognome(Persona** p, char* cognome, int k){
 }
 
 int byCodFis(Persona** p, char* codFis, int k){
-    //printf("Le persone il cui cognome e' %s sono:\n", cognome);
     int counter = 0;
     for (int i = 0; i < k; i++){
         if ((strcmp(p[i]->codiceFiscale, codFis) == 0)){
-            //printf("nome: %s\ncognome: %s\nCodice fiscale: %s\n\n", p[i]->nome, p[i]->cognome, p[i]->codiceFiscale);
             counter += 1;
         }
     }
@@ -154,7 +151,13 @@ int byCodFis(Persona** p, char* codFis, int k){
 
 int main(void){
     Persona** p;
-    int k = 3;
+    int k = 0;
+
+    do{
+        printf("Quante persone si desiderano inserire nell'archivio ");
+        scanf("%d", &k);
+    }while(k > MAXPER);
+    fflush(stdin);
     p = inputPersone(p ,k);
     
     printf("Persone con codice fiscale %s presenti sono %d\n", "MRTMHL98C10H703A", byCodFis(p, "MRTMHL98C10H703A", k));
