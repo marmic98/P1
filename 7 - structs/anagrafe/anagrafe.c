@@ -81,33 +81,87 @@ int verificaCF(char* cf){
     return 1;
 }
 
-
-Persona* inputPersona (char* nome, char* cognome, char* codiceFiscale){
+Persona* inputPersona (){
     Persona* p = xmalloc(sizeof(Persona));
-
-    //printf("Fornire nome ");
-    p->nome = nome;//readString(LENMAX);
-    
-    //printf("Fornire cognome ");
-    p->cognome = cognome;//readString(LENMAX);
-    
-    do{
-        //printf("Fornire codice fiscale ");
-        strcpy(p->codiceFiscale, codiceFiscale);
-        //readLine(p->codiceFiscale);
-        upper(p->codiceFiscale);
-    }while(!verificaCF(p->codiceFiscale));
-    
+        printf("Fornire nome ");
+        p->nome = readString(LENMAX);
+        
+        printf("Fornire cognome ");
+        p->cognome = readString(LENMAX);
+        
+        do{
+            printf("Fornire codice fiscale ");
+            readLine(p->codiceFiscale);
+            upper(p->codiceFiscale);
+        }while(!verificaCF(p->codiceFiscale));
+        printf("\n");
     return p;
 }
 
-void printPersona (Persona* p){
-    printf("nome: %s\ncognome: %s\nCodice fiscale: %s\n", p->nome, p->cognome, p->codiceFiscale);
+Persona** inputPersone(Persona** p, int numPersone){
+    p = xmalloc(sizeof(Persona) * numPersone);
+    for (int i = 0; i< numPersone; i++){
+        printf("Persona %d\n", i + 1);
+        p[i] = inputPersona();
+    }
+    return p;
+}
+
+void freeAll(Persona** p, int k){
+    for (int i = 0; i < k; i++){
+        free(p[i]);
+    }
+}
+
+void printPersona (Persona** p, int k){
+    for(int i = 0; i < k; i++){
+        printf("nome: %s\ncognome: %s\nCodice fiscale: %s\n\n", p[i]->nome, p[i]->cognome, p[i]->codiceFiscale);
+    }
+}
+
+void searchByNomeCognome(Persona** p, char* nome, char* cognome, int k){
+    printf("Le persone il cui cognome e nome sono %s %s sono:\n", cognome, nome);
+    for (int i = 0; i < k; i++){
+        if ((strcmp(p[i]->nome, nome) == 0) && (strcmp(p[i]->cognome, cognome) == 0)){
+            printf("nome: %s\ncognome: %s\nCodice fiscale: %s\n\n", p[i]->nome, p[i]->cognome, p[i]->codiceFiscale);
+        }
+    }
+}
+
+int byCognome(Persona** p, char* cognome, int k){
+    //printf("Le persone il cui cognome e' %s sono:\n", cognome);
+    int counter = 0;
+    for (int i = 0; i < k; i++){
+        if ((strcmp(p[i]->cognome, cognome) == 0)){
+            //printf("nome: %s\ncognome: %s\nCodice fiscale: %s\n\n", p[i]->nome, p[i]->cognome, p[i]->codiceFiscale);
+            counter += 1;
+        }
+    }
+    return counter;
+}
+
+int byCodFis(Persona** p, char* codFis, int k){
+    //printf("Le persone il cui cognome e' %s sono:\n", cognome);
+    int counter = 0;
+    for (int i = 0; i < k; i++){
+        if ((strcmp(p[i]->codiceFiscale, codFis) == 0)){
+            //printf("nome: %s\ncognome: %s\nCodice fiscale: %s\n\n", p[i]->nome, p[i]->cognome, p[i]->codiceFiscale);
+            counter += 1;
+        }
+    }
+    return counter;
 }
 
 int main(void){
-    Persona* p;
-    p = inputPersona("Michele", "Martino", "mrtmhl98c10h703a");
-    printPersona(p);
-    free(p);
+    Persona** p;
+    int k = 3;
+    p = inputPersone(p ,k);
+    
+    printf("Persone con codice fiscale %s presenti sono %d\n", "MRTMHL98C10H703A", byCodFis(p, "MRTMHL98C10H703A", k));
+    printf("Persone con Cognome %s presenti sono %d\n", "Martino", byCognome(p, "Martino", k));
+    
+    searchByNomeCognome(p, "Michele", "Martino", k);
+
+    printPersona(p, k);
+    freeAll(p, k);
 }
