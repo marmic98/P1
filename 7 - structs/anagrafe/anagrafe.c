@@ -120,14 +120,6 @@ void printPersona (Persona** p, int k){
     }
 }
 
-void searchByNomeCognome(Persona** p, char* nome, char* cognome, int k){
-    printf("Le persone il cui cognome e nome sono %s %s sono:\n", cognome, nome);
-    for (int i = 0; i < k; i++){
-        if ((strcmp(p[i]->nome, nome) == 0) && (strcmp(p[i]->cognome, cognome) == 0)){
-            printf("nome: %s\ncognome: %s\nCodice fiscale: %s\n\n", p[i]->nome, p[i]->cognome, p[i]->codiceFiscale);
-        }
-    }
-}
 
 int byCognome(Persona** p, char* cognome, int k){
     int counter = 0;
@@ -149,8 +141,23 @@ int byCodFis(Persona** p, char* codFis, int k){
     return counter;
 }
 
+Persona** searchByNomeCognome(Persona** p, Persona** pNew, char* nome, char* cognome, int k, int* j){
+    printf("Le persone il cui cognome e nome sono %s %s sono:\n", cognome, nome);
+    pNew = xmalloc(sizeof(Persona));
+    for (int i = 0; i < k; i++){
+        if ((strcmp(p[i]->nome, nome) == 0) && (strcmp(p[i]->cognome, cognome) == 0)){
+            pNew[*j] = p[i];
+            *j += 1;
+            pNew = xrealloc(pNew, sizeof(Persona) * (*j + 1));
+        }
+    }
+    printPersona(pNew, *j);
+    return pNew;
+}
+
 int main(void){
     Persona** p;
+
     int k = 0;
 
     do{
@@ -163,8 +170,9 @@ int main(void){
     printf("Persone con codice fiscale %s presenti sono %d\n", "MRTMHL98C10H703A", byCodFis(p, "MRTMHL98C10H703A", k));
     printf("Persone con Cognome %s presenti sono %d\n", "Martino", byCognome(p, "Martino", k));
     
-    searchByNomeCognome(p, "Michele", "Martino", k);
-
-    printPersona(p, k);
+    int j = 0;
+    Persona** pNew;
+    pNew = searchByNomeCognome(p, pNew, "Michele", "Martino", k, &j);
+    
     freeAll(p, k);
 }
