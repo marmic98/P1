@@ -100,7 +100,7 @@ Persona* inputPersona (){
 }
 
 Persona** inputPersone(Persona** p, int numPersone){
-    p = xmalloc(sizeof(Persona) * numPersone);
+    p = xmalloc(sizeof(Persona*) * numPersone);
     for (int i = 0; i< numPersone; i++){
         printf("Persona %d\n", i + 1);
         p[i] = inputPersona();
@@ -143,12 +143,12 @@ int byCodFis(Persona** p, char* codFis, int k){
 
 Persona** searchByNomeCognome(Persona** p, Persona** pNew, char* nome, char* cognome, int k, int* j){
     printf("Le persone il cui cognome e nome sono %s %s sono:\n", cognome, nome);
-    pNew = xmalloc(sizeof(Persona));
+    pNew = xmalloc(sizeof(Persona*));
     for (int i = 0; i < k; i++){
         if ((strcmp(p[i]->nome, nome) == 0) && (strcmp(p[i]->cognome, cognome) == 0)){
             pNew[*j] = p[i];
             *j += 1;
-            pNew = xrealloc(pNew, sizeof(Persona) * (*j + 1));
+            pNew = xrealloc(pNew, sizeof(Persona*) * (*j + 1));
         }
     }
     printPersona(pNew, *j);
