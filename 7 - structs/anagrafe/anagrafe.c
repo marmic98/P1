@@ -59,11 +59,8 @@ void readLine (char* str){
 char* readString (int lenMax){
     char* s = xmalloc(lenMax * sizeof(char));
     readLine(s);
-
     int len = strlen(s);
-
     s = xrealloc(s, len * sizeof(char));
-
     return s;
 }
 
