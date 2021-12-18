@@ -171,7 +171,7 @@ int main(void){
     printf("Popolamento Archivio\n");
     Persona** p = inputPersone(p ,k);
     do{
-        printf("1 - Ricerca per codice fiscale\n2 - Ricerca per cognome\n3 - Crea sottoelenco relativo ad uno specifico nome e cognome\n4 - Esci\nScelta: ");
+        printf("1 - Ricerca per codice fiscale\n2 - Ricerca per cognome\n3 - Crea sottoelenco relativo ad uno specifico nome e cognome\n4 - Mostra Archivio\n5 - Esci\nScelta: ");
         scanf("%d", &choice);
         fflush(stdin);
         if (choice == 1){
@@ -197,7 +197,10 @@ int main(void){
             cognome = readString(LENMAX);
             Persona** pNew = searchByNomeCognome(p, pNew, nome, cognome, k, &j);
         }
-    }while(choice < 4);
+        if (choice == 4){
+            printPersona(p, k);
+        }
+    }while(choice < 5);
     printf("Ciao ciao\n");
     freeAll(p, k);
 }

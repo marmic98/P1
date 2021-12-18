@@ -97,6 +97,20 @@ Studente** inputStudenti(Studente** students, int n){
     return students;
 }
 
+Studente** searchByCognome(Studente** students, Studente** studentsCopy, int n, int* nN){
+    printf("Fornire cognome ");
+    char* cognome = readString(MAXLENSTR);
+    studentsCopy = xmalloc(sizeof(Studente*));
+    for(int i = 0; i < n; i++){
+            if (strcmp(students[i]->cognome, cognome) == 0){
+                studentsCopy[*nN] = students[i];
+                *nN += 1;
+                studentsCopy = xrealloc(studentsCopy, sizeof(Studente*) * (*nN + 1));
+            }
+    }
+    return studentsCopy;
+}
+
 void freeAll(Studente** students, int n){
     for(int i = 0; i < n; i++)
         free(students[i]);
@@ -104,8 +118,23 @@ void freeAll(Studente** students, int n){
 
 int main(void){
     int n = numberOfStudents();
-    Studente** students = xmalloc(sizeof(Studente*) * n);
+    Studente** students = xmalloc(sizeof(Studente*) * n); 
+    printf("Popolamento registro studenti\n");
     students = inputStudenti(students, n);
-    printStudents(students, n);
+    
+    int choice = 0;
+    do{
+        printf("1 - Calcola media della classe\n2 - Crea sottoelenco per cognome\n3 - Esci o frat\nScelta: ");
+        scanf("%d", &choice);
+        fflush(stdin);
+        if (choice == 1)
+            printStudents(students, n);
+        if (choice == 2){
+            int nN = 0;
+            Studente** studentiByCog = searchByCognome(students, studentiByCog,  n, &nN);
+            printStudents(studentiByCog, nN);
+        }
+    }while(choice < 3);
+    
     freeAll(students, n);
 }
