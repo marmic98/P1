@@ -51,6 +51,8 @@ void upper (char* str){
 
 void readLine (char* str){
     fgets(str, LENMAX, stdin);
+    fflush(stdin);
+    fflush(stdout);
     int len = strlen(str);
     if (str[len - 1] == '\n')
         str[len - 1] = '\0';
@@ -152,24 +154,50 @@ Persona** searchByNomeCognome(Persona** p, Persona** pNew, char* nome, char* cog
     return pNew;
 }
 
-int main(void){
-    Persona** p;
-
+int numberPeople(){
     int k = 0;
-
     do{
         printf("Quante persone si desiderano inserire nell'archivio ");
         scanf("%d", &k);
+        fflush(stdin);
     }while(k > MAXPER);
-    fflush(stdin);
-    p = inputPersone(p ,k);
+    return k;
+}
+
+int main(void){
+    int k = numberPeople();
+    int choice = 0;
     
-    printf("Persone con codice fiscale %s presenti sono %d\n", "MRTMHL98C10H703A", byCodFis(p, "MRTMHL98C10H703A", k));
-    printf("Persone con Cognome %s presenti sono %d\n", "Martino", byCognome(p, "Martino", k));
-    
-    int j = 0;
-    Persona** pNew;
-    pNew = searchByNomeCognome(p, pNew, "Michele", "Martino", k, &j);
-    
+    printf("Popolamento Archivio\n");
+    Persona** p = inputPersone(p ,k);
+    do{
+        printf("1 - Ricerca per codice fiscale\n2 - Ricerca per cognome\n3 - Crea sottoelenco relativo ad uno specifico nome e cognome\n4 - Esci\nScelta: ");
+        scanf("%d", &choice);
+        fflush(stdin);
+        if (choice == 1){
+            printf("Fornire CF: ");
+            char cf[LENCF+1];
+            readLine(cf);
+            upper(cf);
+            printf("Persone con codice fiscale %s presenti sono %d\n", cf, byCodFis(p, cf, k));
+            
+        }
+        if (choice == 2){
+            printf("Fornire Cognome: ");
+            char* cognome = readString(LENMAX);
+            printf("Persone con Cognome %s presenti sono %d\n", cognome, byCognome(p, cognome, k));
+        }
+        if (choice == 3){
+            int j = 0;
+            char* nome; 
+            char* cognome;
+            printf("Fornire Nome: "); 
+            nome = readString(LENMAX);
+            printf("Fornire Cognome: ");
+            cognome = readString(LENMAX);
+            Persona** pNew = searchByNomeCognome(p, pNew, nome, cognome, k, &j);
+        }
+    }while(choice < 4);
+    printf("Ciao ciao\n");
     freeAll(p, k);
 }
