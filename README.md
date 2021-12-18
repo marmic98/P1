@@ -47,7 +47,7 @@
   - Intersezione tra due array
   - Inserimento di un elemento di un array
   - Eliminazione di un elemento di un array
-  - sommaMinMaxMArix.c: Somma tra matrici, massimo e minimo per ogni elemento
+  - sommaMinMaxMatrix.c: Somma tra matrici, massimo e minimo per ogni elemento
   - sommaMatrix.c: Somma elementi della matrice
   - Verifica la presenza di un numero di Armstrong a 3 cifre in un array
   - filtro.c: Verifica la presenza di un elemento di un array secondo la relazione a[i] == b[j] +     b[j+1]
