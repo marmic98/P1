@@ -56,7 +56,7 @@ Pizza** menuPizze; //alloc globale perchè sennò dovevo poartarla per parametro
 
 void printPizze(Pizza** pizze, int num){
     for(int i = 0; i < num; i++){
-        printf("Nome: %s\nIngredienti: %s\nCottura: %s\nFarina utilizzata: %s\n\n", pizze[i]->nome, pizze[i]->ingredienti, pizze[i]->cottura, pizze[i]->farina);
+        printf("Nome: %s\nIngredienti: %s\nCottura: %s\nFarina utilizzata: %s\n", pizze[i]->nome, pizze[i]->ingredienti, pizze[i]->cottura, pizze[i]->farina);
     }
 }
 
@@ -81,7 +81,6 @@ Ordine* takeOrder(Ordine* order){
     order = xmalloc(sizeof(Ordine*));
     printf("Antipasti\n1 - fritto etero(la casa lo sconsiglia poiche' da normie)\n2 - fritto non binario\n3 - fritto transgender\nScelta: ");
     order->antipasto = readString(MAXLENSTR);
-    int stop = 1;
     order->numPizze = 0;
 
     printf("numero di pizze?\n");
@@ -101,33 +100,30 @@ Ordine* takeOrder(Ordine* order){
 void printOrders(Ordine** orders, int n){
     
     for(int i = 0; i < n; i++){
-        printf("%d", i);
-        printf("Antipasto: %s\n", orders[i]->antipasto);
+        printf("Ordine %d\nAntipasto: %s\nPizze:\n",i + 1, orders[i]->antipasto);
         printPizze(orders[i]->pizza, orders[i]->numPizze);
         orders[i]->bibita == 1 ? printf("Bibita\n") : printf("No bibita\n");
     }
 }
 
-Ordine** takeOrders(int index){
-    Ordine** orders = xmalloc(sizeof(Ordine*));
+int takeOrders(Ordine** orders, int index){
     orders[index] = takeOrder(orders[index]);
     index =+ 1;
     orders = xrealloc(orders, (index + 1) * sizeof(Ordine*));
-    return orders;
+    return index;
 }
 
 void selector(){
     int choice = 0;
     int index = 0;
-    Ordine ** orders;
+    Ordine ** orders = xmalloc(sizeof(Ordine*));
     
     do{
         printf("1 - Prendi ordine\n2 - Mostra comande\n3 - Esci\nScelta: ");
         scanf("%d", &choice);
         fflush(stdin);
         if (choice == 1){
-            orders = takeOrders(index);
-            index += 1;
+            index  += takeOrders(orders, index);
         }
         if (choice == 2)
             printOrders(orders, index);
