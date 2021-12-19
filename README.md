@@ -76,8 +76,8 @@
   - anagrafe.c: popola i campi di una struct persona la quale viene allocata dinamicamente. Prevede funzione di manipolazione dei dati presenti nella struttura
   - triangoli.c: verifica se due quadrati sono uguali (a meno di traslazioni e rotazioni)
   - studenti.c: gestisce un elenco di studenti, raccogliendo nome, cognome e voti. Ad ogni studente è associato un vettore di voti
-  -voti.c: calcola la media voti di una classe (tipo studenti.c ma più scemo)
-  -pizzeria.c: array di puntatori a struttture con dentro array di puntatori a strutture. Meglio dell'eroina (Seguite rarissimaavis su github se volete saperne di più sui piedini)
+  - voti.c: calcola la media voti di una classe (tipo studenti.c ma più scemo)
+  - pizzeria.c: array di puntatori a struttture con dentro array di puntatori a strutture. Meglio dell'eroina (Seguite rarissimaavis su github se volete saperne di più sui piedini)
 ## Files
   - copyFile.c: Effettua scrittura di un file, copia di esso su un altro file e output testuale di quest'ultimo
   - spartiacque.c: Scrive su un file tutte le stringhe, contenute in un array di stringhe, che sono alfabeticamente precedenti ad una certa stringa "spartiacque" presa in input
