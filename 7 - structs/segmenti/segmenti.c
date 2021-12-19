@@ -25,20 +25,25 @@ double lunghezza (Segmento* s){
     return sqrt((s->x2 - s->x1)*(s->x2 - s->x1) + (s->y2 - s->y1)*(s->y2 - s->y1));
 }
 
+int isLungo (Segmento *segmento, double maxLen){
+    return lunghezza(segmento) > maxLen;
+}
+
 int eliminaLunghi(Segmento** as, int n, double maxLen){
     int i = 0;
     while(i < n){
-        if(lunghezza(as[i]) > maxLen)
+        if(isLungo(as[i], maxLen))
             n = delete(as, i, n);
         else i++;
     }
     return n;
 }
 
-Segmento** inputSegmenti (int n){
-    Segmento**as = xmalloc(sizeof(Segmento*) * n); 
+Segmento** inputSegmenti (Segmento**as, int n){ 
+    as = xmalloc(sizeof(Segmento*) * n);
     for(int i = 0; i < n; i++){
         as[i] = xmalloc(sizeof(Segmento));
+        printf("Segmento n %d\n", i + 1);
         printf("x1 = ");
         scanf("%lf", &as[i]->x1);
         printf("x2 = ");
@@ -60,7 +65,7 @@ void printSegmenti(Segmento** as, int n){
 
 int main(void){
     int n = 3;
-    Segmento **as = inputSegmenti(n);   
+    Segmento **as = inputSegmenti(as, n);   
     //printSegmenti(as, n);
     double maxLen = 30;
     n = eliminaLunghi(as, n, maxLen);
