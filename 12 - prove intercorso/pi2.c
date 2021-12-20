@@ -54,7 +54,7 @@ int main(void){
     int nGrandi = 0;
     double areaMin = 40;
     Rect *a = xmalloc(sizeof(Rect) * n);
-    a[0].h = 3;
+    a[0].h = 7;
     a[0].w = 7;
 
     a[1].h = 5;
