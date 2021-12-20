@@ -67,7 +67,7 @@ int main(void){
     int n = 3;
     Segmento **as = inputSegmenti(as, n);   
     //printSegmenti(as, n);
-    double maxLen = 30;
+    double maxLen = 10;
     n = eliminaLunghi(as, n, maxLen);
     printf("Segmenti non lunghi\n");
     printSegmenti(as, n);
