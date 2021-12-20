@@ -79,6 +79,7 @@
   - voti.c: calcola la media voti di una classe (tipo studenti.c ma più scemo)
   - pizzeria.c: array di puntatori a struttture con dentro array di puntatori a strutture. Meglio dell'eroina (Seguite rarissimaavis su github se volete saperne di più sui piedini)
   - segmenti.c: Calcola la lunghezza di un segmente. Inoltre, dato un array di segmenti, elimina da quest'ultimi gli array che sono più lunghi di una lunghezza nota
+  - libreria.c: gestore libreria. Features: ricerca presenza autore e ricerca del libro più vecchio
 ## Files
   - copyFile.c: Effettua scrittura di un file, copia di esso su un altro file e output testuale di quest'ultimo
   - spartiacque.c: Scrive su un file tutte le stringhe, contenute in un array di stringhe, che sono alfabeticamente precedenti ad una certa stringa "spartiacque" presa in input
