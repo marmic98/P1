@@ -27,7 +27,7 @@ double area(Rect rettangolo){
     return rettangolo.h * rettangolo.w;
 }
 
-Rect* rettangoliGrandi(Rect a[], int n, double areaMin, int* nGrandi){
+Rect* rettangoliGrandi(Rect *a, int n, double areaMin, int* nGrandi){
     *nGrandi = 0;
     Rect* aNew = xmalloc(sizeof(Rect));
     for(int i = 0; i < n; i++){
@@ -37,8 +37,10 @@ Rect* rettangoliGrandi(Rect a[], int n, double areaMin, int* nGrandi){
             aNew = xrealloc(aNew, sizeof(Rect)* (*nGrandi + 1));
         }
     }
-    if (*nGrandi == 0)
+    if (*nGrandi == 0){
+        free(aNew);
         return NULL;
+    }
     else 
         return aNew;
 }
@@ -52,10 +54,10 @@ void printRettangoli(Rect a[], int n){
 int main(void){
     int n = 3;
     int nGrandi = 0;
-    double areaMin = 40;
+    double areaMin = 50;
     Rect *a = xmalloc(sizeof(Rect) * n);
     a[0].h = 7;
-    a[0].w = 7;
+    a[0].w = 10;
 
     a[1].h = 5;
     a[1].w = 2;
@@ -64,6 +66,8 @@ int main(void){
     a[2].w = 11;
 
     Rect* aNew = rettangoliGrandi(a, n, areaMin, &nGrandi);
-
-    printRettangoli(aNew, nGrandi);
+    if(aNew == NULL)
+        printf("Non ci sono rettangoli idonei\n");
+    else
+        printRettangoli(aNew, nGrandi);
 }
