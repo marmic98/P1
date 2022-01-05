@@ -37,8 +37,10 @@ Rect* rettangoliGrandi(Rect a[], int n, double areaMin, int* nGrandi){
             aNew = xrealloc(aNew, sizeof(Rect)* (*nGrandi + 1));
         }
     }
-    if (*nGrandi == 0)
+    if (*nGrandi == 0){
+        free(aNew);
         return NULL;
+    }
     else 
         return aNew;
 }
