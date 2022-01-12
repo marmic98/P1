@@ -57,7 +57,7 @@ int main(void){
     double areaMin = 50;
     Rect *a = xmalloc(sizeof(Rect) * n);
     a[0].h = 7;
-    a[0].w = 10;
+    a[0].w = 1;
 
     a[1].h = 5;
     a[1].w = 2;
@@ -66,8 +66,6 @@ int main(void){
     a[2].w = 11;
 
     Rect* aNew = rettangoliGrandi(a, n, areaMin, &nGrandi);
-    if(aNew == NULL)
-        printf("Non ci sono rettangoli idonei\n");
-    else
-        printRettangoli(aNew, nGrandi);
+    
+    !aNew ? printf("Non ci sono rettangoli idonei\n") : printRettangoli(aNew, nGrandi);
 }
