@@ -66,6 +66,12 @@ int main(void){
     a[2].w = 11;
 
     Rect* aNew = rettangoliGrandi(a, n, areaMin, &nGrandi);
+<<<<<<< HEAD
     
     !aNew ? printf("Non ci sono rettangoli idonei\n") : printRettangoli(aNew, nGrandi);
 }
+=======
+
+    printRettangoli(aNew, nGrandi);
+}
+>>>>>>> fd4ea1ed5dc9e9a26bed81009c4cc983d8c5d740
