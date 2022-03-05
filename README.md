@@ -1,4 +1,4 @@
-# C Algorithms (Work in Progress...)
+# C Algorithms
 ## Basic function
   - bolletta.c: Bolletta
   - tabella.c: Tabella caratteri di escape
