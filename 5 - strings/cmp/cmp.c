@@ -24,14 +24,14 @@ int compare (char* s1, char* s2){
 }
 
 void main(void){
-    char *s1 = "Dislasi";
-    char *s2 = "Distasi";
-    printf("%d \n", strcmp(s1, s2));
+    char *s1 = "Distasi";
+    char *s2 = "Dislasi";
+    //printf("%d \n", strcmp(s1, s2));
     if (compare(s1, s2) == 1){
-        printf("s1 viene dopo s2");
+        printf("1  s1 viene dopo s2");
     }  
     else if(compare(s1, s2) == -1){
-        printf("s1 viene prima di s2");
+        printf("-1  s1 viene prima di s2");
     }
-    else printf("s1 e' uguale a s2");
+    else printf("0  s1 e' uguale a s2");
 }
